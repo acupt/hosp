@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">HOSP</a>
+        </div>
+        <div th:if="${ctx!=null}">
+            <ul class="nav navbar-nav" th:each="nav : ${ctx.nav}">
+                <!--<li class="active"><a href="#">NEW</a></li>-->
+                <li><a href="# " th:href="${nav.uri}+'.html'" th:text="${nav.name}">导航</a></li>
+            </ul>
+        </div>
+        <form th:if="${key!=null}" class="navbar-form navbar-left" role="search" action="search" method="get">
+            <div class="form-group">
+                <input name="key" type="text" class="form-control" th:value="${key}"
+                       placeholder="what's wrong with you?">
+            </div>
+            <input class="btn btn-default" type="submit" value="search"/>
+        </form>
+        <div class="navbar-right">
+            <ul class="nav navbar-nav" th:if="${ctx==null}">
+                <li><a href="login.html">登录</a></li>
+                <li><a href="register.html">注册</a></li>
+            </ul>
+            <ul class="nav navbar-nav" th:if="${ctx!=null}">
+                <li><a href="###" th:text="${ctx.user.nick}">用户名</a></li>
+                <li><a href="logout">退出</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

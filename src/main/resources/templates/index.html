@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>hosp</title>
+    <style>
+    </style>
+</head>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<script src='/js/jquery-3.2.1.min.js'></script>
+<script src='/js/jquery.form.min.js'></script>
+<script src="/js/bootstrap.min.js"></script>
+<body>
+<div id="topbar"></div>
+<div style="padding: 200px 500px 10px;">
+    <form class="bs-example bs-example-form" role="form" action="search" method="get">
+        <div class="row">
+            <div class="input-group">
+                <input name="key" type="text" class="form-control" placeholder="what's wrong with you?">
+                <span class="input-group-btn">
+                        <input class="btn btn-default" type="submit" value="search"/>
+                </span>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    $("#topbar").load("/topbar.html");
+</script>
+</body>
+</html>
+<script>
+    $(function () {
+        $('#loginform').submit(function () {
+            $.ajax({
+                type: "POST",
+                url: "/login",
+                data: $('#loginform').serialize(),
+                dataType: 'json',
+                success: function (result) {
+                    if (result.success) {
+                        alert("ok");
+//                        window.location.href = result.data.redirectUrlComplete;
+                    } else {
+                        alert(result.msg)
+                    }
+                }
+
+                ,
+                error: function (xhr, status, e) {
+                    alert('登录异常,请刷新页面重试(' + status + ')');
+                }
+            })
+            return false;
+        });
+    });
+
+    function login() {
+        var biu = $('#biu').val();
+        $.ajax({
+            type: wtf,
+            dataType: 'json',
+            data: {
+                biu: biu
+            },
+            url: 'biu/' + wtf,
+            success: function (result) {
+                var msg;
+                if (result.code == 0) {
+                    msg = result.data.biu;
+                } else {
+                    msg = result.msg;
+                }
+                document.getElementById('biuarea').innerHTML = msg;
+            },
+            error: function (xhr, status, e) {
+                alert('shirt error! ' + status + ' ' + e);
+            }
+        });
+    }
+</script>

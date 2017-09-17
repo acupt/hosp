@@ -1,0 +1,28 @@
+server:
+  port: @hosp.server.port@
+  max-http-header-size: 8192
+  tomcat:
+    uri-encoding: UTF-8
+
+
+spring:
+  thymeleaf:
+    mode: LEGACYHTML5
+    encoding: UTF-8
+    cache: false
+  datasource:
+    url: @hosp.mysql.url@
+    username: @hosp.mysql.username@
+    password: @hosp.mysql.password@ #配置文件中要加引号保证准确
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate.ddl-auto: update
+
+#开启对AOP的支持
+spring.aop.auto: true
+
+elasticsearch.clustername: elasticsearch
+elasticsearch.host: localhost
+elasticsearch.port: 9300
