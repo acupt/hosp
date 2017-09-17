@@ -23,6 +23,6 @@ spring:
 #开启对AOP的支持
 spring.aop.auto: true
 
-elasticsearch.clustername: elasticsearch
-elasticsearch.host: localhost
-elasticsearch.port: 9300
+elasticsearch.clustername: @hosp.es.clustername@
+elasticsearch.host: @hosp.es.host@
+elasticsearch.port: @hosp.es.port@
