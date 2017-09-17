@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>hosp</title>
+    <title>注册</title>
     <style>
         body {
             background-repeat: no-repeat;
             background-image: url("/img/back.jpg");
-            /*background-color: #9CDAD5;*/
             background-attachment: fixed;
             background-size: 100% 100%;
         }
@@ -21,7 +20,7 @@
         }
 
         form {
-            width: 200px;
+            width: 500px;
         }
     </style>
 </head>
@@ -30,41 +29,63 @@
 <script src='/js/jquery.form.min.js'></script>
 <script src="/js/bootstrap.min.js"></script>
 <body>
-<div style="padding: 80px 620px 10px;">
-    <form id="regform" class="bs-example bs-example-form" role="form">
-        <div class="input-group">
-            <span class="input-group-addon">用户名</span>
-            <input name="username" type="text" class="form-control">
+<div id="topbar"></div>
+<div style="padding: 100px 500px 10px;">
+    <form id="loginform" class="bs-example bs-example-form" role="form">
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">用&nbsp;&nbsp;户&nbsp;&nbsp;名</span>
+            <input name="name" type="text" class="form-control" placeholder="4~20个字符">
         </div>
         <br>
-        <div class="input-group">
-            <span class="input-group-addon">密码</span>
-            <input name="password" type="password" class="form-control">
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</span>
+            <input name="password" type="password" class="form-control" placeholder="4~20个字符">
         </div>
         <br>
-        <div class="input-group">
-            <span class="input-group-addon">确认密码</span>
-            <input name="repassword" type="password" class="form-control">
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">重复密码</span>
+            <input name="repassword" type="password" class="form-control" placeholder="再次输入密码防止错误">
         </div>
         <br>
-        <div class="input-group">
-            <input type="submit" class="btn btn-default" value="注 册">
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span>
+            <input name="nick" type="text" class="form-control">
+        </div>
+        <br>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">个人简介</span>
+            <textarea name="remarks" type="text" class="form-control" style="height: 100px"></textarea>
+        </div>
+        <br>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon">账号类型</span>
+            <select name="role" class="form-control">
+                <option value="1">普通用户</option>
+                <option value="2">医生</option>
+            </select>
+        </div>
+        <br>
+        <div class="input-group input-group-lg">
+            <input type="submit" class="btn btn-default" style="height: 50px" value="立 即 注 册">
         </div>
     </form>
 </div>
+<script>
+    $("#topbar").load("/topbar.html");
+</script>
 </body>
 </html>
 <script>
     $(function () {
-        $('#regform').submit(function () {
+        $('#loginform').submit(function () {
             $.ajax({
                 type: "POST",
                 url: "/register",
-                data: $('#regform').serialize(),
+                data: $(this).serialize(),
                 dataType: 'json',
                 success: function (result) {
                     if (result.success) {
-                        window.location.href = "home.html";
+                        window.location.href = "/";
                     } else {
                         alert(result.msg)
                     }

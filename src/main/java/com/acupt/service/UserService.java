@@ -26,6 +26,13 @@ public class UserService {
         if (err != null) {
             return new Result<>(CodeEnum.USER_INFO_ILLEGAL, err);
         }
+        if (user.getRole() == UserRoleEnum.ADMIN.getValue()) {
+            return new Result<>(CodeEnum.PARAM_ERR, "用户类型错误");
+        }
+        User exist = userDAO.getByName(user.getName());
+        if (exist != null) {
+            return new Result<>(CodeEnum.RECORD_DUPLICATE, "用户名已存在");
+        }
         user.setGmtCreated(new Date());
         user.setGmtModified(new Date());
         user.setPassword(PasswordUtil.encrypt(user.getPassword()));
@@ -52,6 +59,9 @@ public class UserService {
 
 
     private String checkUser(User user) {
+        if (user == null) {
+            return "空表单";
+        }
         String err = PasswordUtil.checkPasswordFormat(user.getPassword());
         if (err != null) {
             return err;

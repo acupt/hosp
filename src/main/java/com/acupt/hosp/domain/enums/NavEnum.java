@@ -11,7 +11,8 @@ public enum NavEnum {
     HISTORY("求医记录", "/sick/history", UserRoleEnum.NORMAL.getValue()),
     DIAGNOSE("诊断", "/sick/diagnose", UserRoleEnum.DOCTOR.getValue()),
     DIAGNOSE_HISTORY("诊断记录", "/sick/new", UserRoleEnum.DOCTOR.getValue()),
-    LOG("操作记录", "/log/new", UserRoleEnum.ADMIN.getValue());
+    IMPORT("导入数据", "/sick/import", UserRoleEnum.ADMIN.getValue()),
+    LOG("操作记录", "/log/new", UserRoleEnum.ADMIN.getValue()),;
 
     private String name;
 

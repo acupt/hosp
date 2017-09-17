@@ -3,11 +3,13 @@ package com.acupt.hosp.controller;
 import com.acupt.dao.SickCaseDAO;
 import com.acupt.dao.SicknessDAO;
 import com.acupt.domain.Result;
+import com.acupt.domain.enums.CodeEnum;
 import com.acupt.entity.Sickness;
 import com.acupt.entity.User;
 import com.acupt.entity.es.SickCase;
 import com.acupt.hosp.web.LoginContext;
 import com.acupt.service.UserService;
+import com.acupt.util.StringUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -69,6 +71,22 @@ public class IndexController {
     @ResponseBody
     public Result index(HttpServletRequest request, String username, String password) {
         Result<User> result = userService.login(username, password);
+        if (result.isSuccess()) {
+            LoginContext.login(request, result.getData());
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseBody
+    public Result register(HttpServletRequest request, User user, String repassword) {
+        if (StringUtil.isBlank(repassword)) {
+            return new Result(CodeEnum.PARAM_MISS, "请输入确认密码");
+        }
+        if (!repassword.equals(user.getPassword())) {
+            return new Result(CodeEnum.PARAM_ERR, "两次密码不一致");
+        }
+        Result<User> result = userService.register(user);
         if (result.isSuccess()) {
             LoginContext.login(request, result.getData());
         }
