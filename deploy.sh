@@ -10,3 +10,4 @@ if [ $? -ne 0 ]; then
 	exit 2;
 fi
 nohup java -jar target/hosp-1.0-SNAPSHOT.jar >/dev/null 2>&1 &
+
