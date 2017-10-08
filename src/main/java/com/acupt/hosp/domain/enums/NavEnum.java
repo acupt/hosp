@@ -7,12 +7,11 @@ import com.acupt.entity.enums.UserRoleEnum;
  */
 public enum NavEnum {
 
-    NEW("求医", "/sick/new", UserRoleEnum.NORMAL.getValue()),
-    HISTORY("求医记录", "/sick/history", UserRoleEnum.NORMAL.getValue()),
-    DIAGNOSE("诊断", "/sick/diagnose", UserRoleEnum.DOCTOR.getValue()),
-    DIAGNOSE_HISTORY("诊断记录", "/sick/new", UserRoleEnum.DOCTOR.getValue()),
-    IMPORT("导入数据", "/sick/import", UserRoleEnum.ADMIN.getValue()),
-    LOG("操作记录", "/log/new", UserRoleEnum.ADMIN.getValue()),;
+    NEW("NEW", "/sick/new", UserRoleEnum.NORMAL.getValue()),
+    DIAGNOSE("DIAGNOSE", "/sick/diagnose", UserRoleEnum.DOCTOR.getValue()),
+    HISTORY("HISTORY", "/sick/history", UserRoleEnum.merge(UserRoleEnum.NORMAL, UserRoleEnum.DOCTOR)),
+    IMPORT("IMPORT", "/sick/import", UserRoleEnum.ADMIN.getValue()),
+    LOG("LOG", "/log", UserRoleEnum.ADMIN.getValue()),;
 
     private String name;
 

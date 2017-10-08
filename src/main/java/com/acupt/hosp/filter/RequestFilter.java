@@ -30,9 +30,13 @@ public class RequestFilter extends OncePerRequestFilter {
         String uri = request.getRequestURI();
         boolean isStatic = isStatic(uri);
         if (!isStatic && !loginFilter(request)) {
-            response.setContentType("text/json");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(new Result(CodeEnum.NO_LOGIN).toString());
+            if (uri.endsWith(".html")) {
+                response.sendRedirect("/");
+            } else {
+                response.setContentType("text/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write(new Result(CodeEnum.NO_LOGIN).toString());
+            }
             return;
         }
         filterChain.doFilter(request, response);

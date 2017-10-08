@@ -14,7 +14,7 @@
 <div id="topbar"></div>
 <div style="padding-left: 80px;width: 80%">
     <div class="list-group" th:each="sick : ${sicks}">
-        <a href="#" class="list-group-item" style="border-style: none">
+        <a th:href="${'/sick/case/'+sick.id}" href="#" class="list-group-item" style="border-style: none">
             <h4 class="list-group-item-heading" th:text="${sick.title}">标题</h4>
             <p class="list-group-item-text" th:text="${sick.content}">内容</p>
         </a>

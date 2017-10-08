@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Case</title>
+</head>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<script src='/js/jquery-3.2.1.min.js'></script>
+<script src='/js/jquery.form.min.js'></script>
+<script src="/js/bootstrap.min.js"></script>
+<body>
+<div id="topbar"></div>
+<div style="padding-left: 80px;width: 50%">
+    <h3 th:text="${result.data.title}"></h3>
+    <textarea style="border-style: none;resize:none;width: 100%;height: 200px;" th:disabled="true"
+              th:text="${result.data.content}"></textarea>
+    <div th:if="${result.data.processed}">
+        <p style="color: green">已处理</p>
+        <h5>医生建议</h5>
+        <textarea style="border-style: none;resize:none;width: 100%;height: 200px;" th:disabled="true"
+                  th:text="${result.data.drRemarks}"></textarea>
+    </div>
+    <div th:unless="${result.data.processed}">
+        <p style="color: red">待处理</p>
+        <form id="processed-form" class="bs-example bs-example-form" role="form">
+            <input type="hidden" name="id" th:value="${result.data.id}">
+            <textarea name="remarks" type="text" class="form-control" style="height: 100px"
+                      placeholder="医生，此病，你怎么看？"></textarea>
+            <br>
+            <div class="input-group">
+                <input type="submit" class="btn btn-default" value="提交诊断信息">
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $("#topbar").load("/topbar.html");
+    $(function () {
+        $('#processed-form').submit(function () {
+            $.ajax({
+                type: "POST",
+                url: "/api/case/process",
+                data: $('#processed-form').serialize(),
+                dataType: 'json',
+                success: function (result) {
+                    if (result.success) {
+                        alert("ok");
+                        window.location.href = "/sick/history.html";
+                    } else {
+                        alert(result.msg)
+                    }
+                },
+                error: function (xhr, status, e) {
+                    alert('登录异常,请刷新页面重试(' + status + ')');
+                }
+            })
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

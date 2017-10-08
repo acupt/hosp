@@ -2,6 +2,7 @@ package com.acupt.hosp.web;
 
 import com.acupt.entity.User;
 import com.acupt.hosp.domain.enums.NavEnum;
+import com.acupt.util.TagUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
@@ -26,7 +27,7 @@ public class LoginContext implements Serializable {
         this.loginTime = System.currentTimeMillis();
         nav = new ArrayList<>();
         for (NavEnum navEnum : NavEnum.values()) {
-            if (navEnum.getRole() == user.getRole()) {
+            if (TagUtil.hasTag(navEnum.getRole(), user.getRole())) {
                 nav.add(navEnum);
             }
         }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>History</title>
+    <style>
+        .list-group a {
+            border-style: none
+        }
+    </style>
+</head>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<script src='/js/jquery-3.2.1.min.js'></script>
+<script src='/js/jquery.form.min.js'></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/common.js"></script>
+<body>
+<div id="topbar"></div>
+<div style="padding-left: 80px;width: 80%">
+    <div id="record-list" class="list-group">
+        <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">标题</h4>
+            <p class="list-group-item-text">内容</p>
+        </a>
+    </div>
+</div>
+<script>
+    $("#topbar").load("/topbar.html");
+</script>
+</body>
+</html>
+<script>
+    $(function () {
+        showList(1);
+    });
+
+    function showList(page) {
+        $.ajax({
+            type: "POST",
+            url: "/api/case/diagnose",
+            data: {'page': page},
+            dataType: 'json',
+            success: function (result) {
+                if (result.success) {
+                    var content = "";
+                    var symbol = "td";
+                    if (result.data.length == 0) {
+                        document.getElementById("record-table").innerHTML = "<h3 style='color: grey'>nothing~</h3>";
+                        return;
+                    }
+                    for (var i = 0; i < result.data.length; i++) {
+                        var title = join("h4", result.data[i].title, "class='list-group-item-heading'");
+                        var desc = join("p", result.data[i].content, "class='list-group-item-text'");
+                        content += join("a", title + desc, "href='/sick/case/" + result.data[i].id + "' class='list-group-item'");
+                    }
+                    document.getElementById("record-list").innerHTML = content;
+                } else {
+                    alert(result.msg)
+                }
+            },
+            error: function (xhr, status, e) {
+                alert('登录异常,请刷新页面重试(' + status + ')');
+            }
+        });
+    }
+</script>

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>求医</title>
+    <title>New</title>
     <style>
     </style>
 </head>
@@ -15,17 +15,17 @@
 <div style="padding-left: 80px;width: 50%">
     <form id="newcaseform" class="bs-example bs-example-form" role="form">
         <div class="input-group">
-            <span class="input-group-addon">标题</span>
+            <span class="input-group-addon">Title</span>
             <input name="title" type="text" class="form-control">
         </div>
         <br>
         <div class="input-group">
-            <span class="input-group-addon">病情描述</span>
+            <span class="input-group-addon">Detail</span>
             <textarea name="content" type="text" class="form-control" style="height: 100px"></textarea>
         </div>
         <br>
         <div class="input-group">
-            <input type="submit" class="btn btn-default">
+            <input type="submit" class="btn btn-default" value="submit">
         </div>
     </form>
 </div>
@@ -39,19 +39,17 @@
         $('#newcaseform').submit(function () {
             $.ajax({
                 type: "POST",
-                url: "/case/new",
+                url: "/api/case/new",
                 data: $('#newcaseform').serialize(),
                 dataType: 'json',
                 success: function (result) {
                     if (result.success) {
                         alert("ok");
-//                        window.location.href = result.data.redirectUrlComplete;
+                        window.location.href = "/sick/history.html";
                     } else {
                         alert(result.msg)
                     }
-                }
-
-                ,
+                },
                 error: function (xhr, status, e) {
                     alert('登录异常,请刷新页面重试(' + status + ')');
                 }
@@ -59,28 +57,4 @@
             return false;
         });
     });
-
-    function login() {
-        var biu = $('#biu').val();
-        $.ajax({
-            type: wtf,
-            dataType: 'json',
-            data: {
-                biu: biu
-            },
-            url: 'biu/' + wtf,
-            success: function (result) {
-                var msg;
-                if (result.code == 0) {
-                    msg = result.data.biu;
-                } else {
-                    msg = result.msg;
-                }
-                document.getElementById('biuarea').innerHTML = msg;
-            },
-            error: function (xhr, status, e) {
-                alert('shirt error! ' + status + ' ' + e);
-            }
-        });
-    }
 </script>

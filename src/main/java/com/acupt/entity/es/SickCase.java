@@ -29,19 +29,19 @@ public class SickCase implements Serializable {
      *
      * @see com.acupt.entity.User#id
      */
-    private Long uid;
+    private long uid;
 
     /**
      * 确诊此病例的医生ID
      *
      * @see com.acupt.entity.User#id
      */
-    private Long drUid;
+    private long drUid;
 
     /**
      * @see com.acupt.entity.Sickness#id
      */
-    private Long sid;
+    private long sid;
 
     /**
      * 医生处理结果
@@ -51,17 +51,22 @@ public class SickCase implements Serializable {
     /**
      * @see com.acupt.entity.enums.SickCaseTypeEnum
      */
-    private Integer type;
+    private int type;
 
     /**
      * 创建时间
      */
-    private Long ct;
+    private long ct;
 
     /**
      * 确诊时间
      */
-    private Long et;
+    private long et;
+
+    /**
+     * 已处理
+     */
+    private boolean processed;
 
     public String getId() {
         return id;
@@ -87,27 +92,27 @@ public class SickCase implements Serializable {
         this.content = content;
     }
 
-    public Long getUid() {
+    public long getUid() {
         return uid;
     }
 
-    public void setUid(Long uid) {
+    public void setUid(long uid) {
         this.uid = uid;
     }
 
-    public Long getDrUid() {
+    public long getDrUid() {
         return drUid;
     }
 
-    public void setDrUid(Long drUid) {
+    public void setDrUid(long drUid) {
         this.drUid = drUid;
     }
 
-    public Long getSid() {
+    public long getSid() {
         return sid;
     }
 
-    public void setSid(Long sid) {
+    public void setSid(long sid) {
         this.sid = sid;
     }
 
@@ -119,28 +124,36 @@ public class SickCase implements Serializable {
         this.drRemarks = drRemarks;
     }
 
-    public Integer getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(int type) {
         this.type = type;
     }
 
-    public Long getCt() {
+    public long getCt() {
         return ct;
     }
 
-    public void setCt(Long ct) {
+    public void setCt(long ct) {
         this.ct = ct;
     }
 
-    public Long getEt() {
+    public long getEt() {
         return et;
     }
 
-    public void setEt(Long et) {
+    public void setEt(long et) {
         this.et = et;
+    }
+
+    public boolean isProcessed() {
+        return processed;
+    }
+
+    public void setProcessed(boolean processed) {
+        this.processed = processed;
     }
 
     @Override
@@ -156,6 +169,7 @@ public class SickCase implements Serializable {
                 ", type=" + type +
                 ", ct=" + ct +
                 ", et=" + et +
+                ", processed=" + processed +
                 '}';
     }
 }

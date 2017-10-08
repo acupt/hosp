@@ -5,7 +5,7 @@ package com.acupt.entity.enums;
  */
 public enum SickCaseTypeEnum {
 
-    DB_IMPORT(1, "历史病例（医院数据导入）"), WEB_CONFIRMED(2, "确诊病例（网站医生确诊）");
+    DB_IMPORT(1, "历史病例（医院数据导入）"), USER_SUBMIT(2, "用户提交（求诊）");
 
     private int value;
 

@@ -62,6 +62,11 @@
                 dataType: 'json',
                 success: function (result) {
                     if (result.success) {
+                        if (result.data.role == 2) {
+                            window.location.href = "/sick/diagnose.html";
+                        } else if (result.data.role == 4) {
+                            window.location.href = "/log.html";
+                        }
                         window.location.href = "/";
                     } else {
                         alert(result.msg)

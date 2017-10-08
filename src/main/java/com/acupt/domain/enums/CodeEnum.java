@@ -12,9 +12,10 @@ public enum CodeEnum {
     USER_NOT_EXIST(1004, "用户不存在"),
     PWD_ERR(1005, "密码错误"),
     SYS_ERR(2001, "系统异常"),
-    PARAM_ERR(4001, "缺少参数"),
-    PARAM_MISS(4002, "参数错误"),//duplicate
-    RECORD_DUPLICATE(5001, "记录已存在");
+    PARAM_ERR(4001, "参数错误"),
+    PARAM_MISS(4002, "缺少参数"),
+    RECORD_DUPLICATE(5001, "记录已存在"),
+    RECORD_NOT_EXIST(5002, "记录不存在");
 
     private int code;
 
