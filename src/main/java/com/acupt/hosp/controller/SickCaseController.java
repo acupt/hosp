@@ -29,11 +29,11 @@ public class SickCaseController {
     @Resource
     private SickCaseService sickCaseService;
 
-    @RequestMapping(value = "/case/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/case/{id}.html", method = RequestMethod.GET)
     public ModelAndView detail(HttpServletRequest request, @PathVariable("id") String id) {
         ModelAndView view = new ModelAndView("sick/case");
         Result<SickCase> result = sickCaseService.get(id);
-        return view.addObject(result);
+        return view.addObject(result).addObject(LoginContext.get(request).getUser());
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)

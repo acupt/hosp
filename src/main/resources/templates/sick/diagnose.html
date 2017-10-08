@@ -51,7 +51,7 @@
                     for (var i = 0; i < result.data.length; i++) {
                         var title = join("h4", result.data[i].title, "class='list-group-item-heading'");
                         var desc = join("p", result.data[i].content, "class='list-group-item-text'");
-                        content += join("a", title + desc, "href='/sick/case/" + result.data[i].id + "' class='list-group-item'");
+                        content += join("a", title + desc, "href='/sick/case/" + result.data[i].id + ".html' class='list-group-item'");
                     }
                     document.getElementById("record-list").innerHTML = content;
                 } else {

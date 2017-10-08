@@ -51,7 +51,7 @@
                         } else {
                             content += join(symbol, "待处理", "style='color:red'");
                         }
-                        content += join(symbol, joinA("/sick/case/" + result.data[i].id));
+                        content += join(symbol, joinA("/sick/case/" + result.data[i].id + ".html"));
                         content += "</tr>";
                     }
                     document.getElementById("record-table").innerHTML = content;

@@ -22,7 +22,8 @@
     </div>
     <div th:unless="${result.data.processed}">
         <p style="color: red">待处理</p>
-        <form id="processed-form" class="bs-example bs-example-form" role="form">
+        <form id="processed-form" class="bs-example bs-example-form" role="form"
+              th:if="${user!=null&&user.doctor}">
             <input type="hidden" name="id" th:value="${result.data.id}">
             <textarea name="remarks" type="text" class="form-control" style="height: 100px"
                       placeholder="医生，此病，你怎么看？"></textarea>
