@@ -31,7 +31,7 @@ public class SickCaseController {
 
     @RequestMapping(value = "/case/{id}", method = RequestMethod.GET)
     public ModelAndView detail(HttpServletRequest request, @PathVariable("id") String id) {
-        ModelAndView view = new ModelAndView("/sick/case");
+        ModelAndView view = new ModelAndView("sick/case");
         Result<SickCase> result = sickCaseService.get(id);
         return view.addObject(result);
     }
