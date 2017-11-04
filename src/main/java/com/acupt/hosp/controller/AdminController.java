@@ -76,19 +76,18 @@ public class AdminController {
                     sb.append(gender);
                 }
                 if (StringUtil.isNotBlank(age)) {
-                    sb.append("，").append(age).append("。");
+                    sb.append("，").append(age).append("。\n");
                 }
                 if (StringUtil.isNotBlank(zhusu)) {
-                    sb.append("主诉：").append(zhusu).append("。");
+                    sb.append("主诉：").append(zhusu).append("。\n");
                 }
                 if (StringUtil.isNotBlank(chati)) {
-                    sb.append("查体：").append(chati).append("。");
+                    sb.append("查体：").append(chati).append("。\n");
                 }
                 if (StringUtil.isNotBlank(caseHistory)) {
-                    sb.append("病史：").append(caseHistory).append("。");
+                    sb.append("病史：").append(caseHistory).append("。\n");
                 }
                 sickCase.setContent(sb.toString());
-                sickCase.setDrRemarks(sb.toString());
                 sickCase.setProcessed(true);
                 sickCase.setType(SickCaseTypeEnum.DB_IMPORT.getValue());
                 Result<SickCase> result = sickCaseService.insert(sickCase);
