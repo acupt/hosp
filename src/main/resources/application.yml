@@ -19,6 +19,11 @@ spring:
     database: mysql
     show-sql: true
     hibernate.ddl-auto: update
+  http:
+   multipart:
+     enabled: true
+     max-file-size: 128MB
+     max-request-size: 128MB
 
 #开启对AOP的支持
 spring.aop.auto: true
