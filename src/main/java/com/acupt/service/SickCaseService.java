@@ -38,6 +38,7 @@ public class SickCaseService {
         if (StringUtil.isBlank(sickCase.getContent())) {
             return new Result<>(CodeEnum.PARAM_MISS, "病情描述不可少");
         }
+        sickCase.setCt(System.currentTimeMillis());
         sickCase = sickCaseDAO.save(sickCase);
         return new Result<SickCase>().setData(sickCase);
     }

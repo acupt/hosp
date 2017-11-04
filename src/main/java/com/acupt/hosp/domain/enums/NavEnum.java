@@ -10,8 +10,8 @@ public enum NavEnum {
     NEW("NEW", "/sick/new", UserRoleEnum.NORMAL.getValue()),
     DIAGNOSE("DIAGNOSE", "/sick/diagnose", UserRoleEnum.DOCTOR.getValue()),
     HISTORY("HISTORY", "/sick/history", UserRoleEnum.merge(UserRoleEnum.NORMAL, UserRoleEnum.DOCTOR)),
-    IMPORT("IMPORT", "/sick/import", UserRoleEnum.ADMIN.getValue()),
-    LOG("LOG", "/log", UserRoleEnum.ADMIN.getValue()),;
+    IMPORT("IMPORT", "/admin/import", UserRoleEnum.ADMIN.getValue());
+//    LOG("LOG", "/admin/log", UserRoleEnum.ADMIN.getValue());
 
     private String name;
 
